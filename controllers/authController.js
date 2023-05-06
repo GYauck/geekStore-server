@@ -29,9 +29,12 @@ exports.login = (req, res) => {
         admin: user.admin,
       };
       const token = generateToken(payload);
-      res.cookie("token", token);
 
-      res.send(payload);
+      res.status(201).json({
+        error: false,
+        message: "login successfully",
+        user: { ...payload, token },
+      });
     });
   });
 };
