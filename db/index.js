@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize");
-require("dotenv").config();
+const config = require("../config/dbconfig")
 
-const dbName = process.env.database;
-const dbUser = process.env.username;
-const dbPassword = process.env.password;
-const dbHost = process.env.host;
-const dbDriver = process.env.dialect; //checkear
+const dbName = config.database;
+const dbUser = config.username;
+const dbPassword = config.password;
+const dbHost = config.host;
+const dbDriver = config.dialect;
 
 const db = new Sequelize(
   dbName,
@@ -13,8 +13,8 @@ const db = new Sequelize(
   dbPassword,
   {
     host: dbHost,
-    dialect: process.env.DB_DIALECT,
-    loggin: false,
+    dialect: dbDriver,
+    logging: false
   }
 );
 

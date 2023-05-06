@@ -38,7 +38,6 @@ exports.login = (req, res) => {
 
 //validation
 exports.validation = (req, res) => {
-  console.log(req.user);
   res.send(req.user);
 };
 

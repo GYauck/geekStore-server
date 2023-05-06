@@ -1,41 +1,41 @@
-const { Product } = require("../models");
+const { Product, Brand } = require("../models");
 
 exports.createProduct = (req, res) => {
-  const { name, description, image_URL, price } = req.body;
+  const { name, description, image_URL, price, brand } = req.body;
+  const stock = Number(req.body.stock)
 
   Product.findOne({
     where: {
       name: name,
-      description: description,
-      image_URL: image_URL,
     },
   }).then((product) => {
     if (!product) {
-      Product.create({
-        name,
-        description,
-        image_URL,
-        price,
-      })
-        .then(() => res.sendStatus(201))
+      Product.create(
+        {
+          name,
+          description,
+          image_URL,
+          price,
+          stock,
+        },
+        { raw: true }
+      )
+        .then((product) => {
+          return Brand.findOne({ where: { name: brand } }).then((brand) => {
+            brand.addProduct(product);
+          });
+        })
         .catch((err) => console.log(err));
     } else {
-      product.update({ stock: product.stock + req.body.stock });
+      product.update({ stock: product.stock + stock });
       res.send({ body: "Item added to stock" });
     }
   });
 };
 
-exports.getProduct = (req, res) => {
-  const { productId } = req.query;
-
-  Product.findAll({ where: { id: productId } })
-    .then((product) => res.send(product))
-    .catch((err) => console.log(err));
-};
 
 exports.getAllProducts = (req, res) => {
-  Product.findAll()
+  Product.findAll({include: {model: Brand}})
     .then((products) => res.send(products))
     .catch((err) => console.log(err));
 };
