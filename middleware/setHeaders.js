@@ -1,3 +1,4 @@
+/* const origin = 'http://localhost:3000'; */
 const origin = 'https://geek-store-client.vercel.app';
 
 const setHeaders = (req, res, next) => {
