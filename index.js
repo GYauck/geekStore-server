@@ -19,7 +19,7 @@ app.use(cors(corsConfig));
 // Express Routing
 app.use("/api", routes);
 
-db.sync({ force: false }).then(function () {
+db.sync({ force: true }).then(function () {
   console.log("Database Connected");
   app.listen(process.env.PORT, () => {
     console.log("Server listening at port 8080");
