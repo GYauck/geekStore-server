@@ -15,10 +15,10 @@ router.get("/me", validateAuth, validation);
 
 
 
-router.get("/",validateAuth, users)
+router.get("/", users)
 
-router.delete("/deleteUser/:id", validateAuth, deleteUser)
+router.delete("/deleteUser/:id", deleteUser)
 
-router.put("/toggleAdmin/:id",validateAuth, toggleAdmin)
+router.put("/toggleAdmin/:id", toggleAdmin)
 
 module.exports = router;

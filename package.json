@@ -9,7 +9,7 @@
   "name": "server",
   "description": "",
   "scripts": {
-    "start": "nodemon index.js ; node ./seeders/users ; node ./seeders/brands ; node ./seeders/products",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node ./seeders/users && node ./seeders/brands && node ./seeders/products"
   },
