@@ -27,9 +27,16 @@ y usamos psql o pgcli, para hacer un create DATABASE geekstore..
 <br/>
 Ahora debemos modificar 2 URL en 2 archivos.
 <br/>
-Ir la carpeta server/config/cors.js   Descomentar la url con el localhost y comentar la URL con el geek-store-client.
+Ir la carpeta server/config/cors.js y descomentar la url con el localhost y comentar la URL con el geek-store-client.
 <br/>
 /* const origin = 'http://localhost:3000'; */
+<br/>
+const origin = 'https://geek-store-client.vercel.app';
+<br/>
+Ir a la carpeta server/middleware/setHeader.js y descomentar la url con el localhost y comentar la URL con el geek-store-client.
+<br/>
+/* const origin = 'http://localhost:3000'; */
+<br/>
 const origin = 'https://geek-store-client.vercel.app';
 <br/>
 <br/>
